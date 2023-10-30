@@ -1,3 +1,4 @@
+import 'package:bus_reservation_udemy/models/bus_schedule.dart';
 import 'package:bus_reservation_udemy/models/but_route.dart';
 import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
 import 'package:flutter/material.dart';
@@ -39,12 +40,12 @@ class _SearchResultPageState extends State<SearchResultPage> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: scheduleList
-                        .map((schedule) => ListTile(
-                              title: Text(schedule.bus.busName),
-                              subtitle: Text(schedule.bus.busType),
-                              trailing:
-                                  Text("$currency ${schedule.ticketPrice}"),
-                            ))
+                        .map(
+                          (schedule) => ScheduleItemView(
+                            date: departureDate,
+                            schedule: schedule,
+                          ),
+                        )
                         .toList(),
                   );
                 }
@@ -56,6 +57,68 @@ class _SearchResultPageState extends State<SearchResultPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ScheduleItemView extends StatelessWidget {
+  final String date;
+  final BusSchedule schedule;
+
+  const ScheduleItemView({
+    super.key,
+    required this.date,
+    required this.schedule,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              title: Text(schedule.bus.busName),
+              subtitle: Text(schedule.bus.busType),
+              trailing: Text("$currency ${schedule.ticketPrice}"),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    "From: ${schedule.busRoute.cityFrom}",
+                    style: const TextStyle(fontSize: 17),
+                  ),
+                  Text(
+                    "To: ${schedule.busRoute.cityTo}",
+                    style: const TextStyle(fontSize: 17),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    "Departure Time: ${schedule.departureTime}",
+                    style: const TextStyle(fontSize: 17),
+                  ),
+                  Text(
+                    "Total Seat: ${schedule.bus.totalSeat}",
+                    style: const TextStyle(fontSize: 17),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
