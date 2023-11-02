@@ -4,9 +4,24 @@ import 'package:bus_reservation_udemy/models/bus_schedule.dart';
 import 'package:bus_reservation_udemy/models/but_route.dart';
 import 'package:flutter/material.dart';
 
+import '../models/bus_model.dart';
 import '../models/bus_reservation.dart';
+import '../models/response_model.dart';
 
 class AppDataProvider extends ChangeNotifier {
+  List<Bus> _busList = [];
+  List<BusRoute> _routeList = [];
+  List<BusReservation> _reservationList = [];
+  List<BusSchedule> _scheduleList = [];
+
+  List<Bus> get busList => _busList = [];
+
+  List<BusRoute> get routeList => _routeList = [];
+
+  List<BusReservation> get reservationList => _reservationList = [];
+
+  List<BusSchedule> get scheduleList => _scheduleList = [];
+
   final DataSource _dataSource = DummyDataSource();
 
   Future<BusRoute?> getRouteByCityFromAndCityTo(
@@ -22,5 +37,9 @@ class AppDataProvider extends ChangeNotifier {
       int scheduleId, String departureDate) async {
     return _dataSource.getReservationsByScheduleAndDepartureDate(
         scheduleId, departureDate);
+  }
+
+  Future<ResponseModel> addReservation(BusReservation reservation) {
+    return _dataSource.addReservation(reservation);
   }
 }

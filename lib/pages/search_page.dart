@@ -1,3 +1,4 @@
+import 'package:bus_reservation_udemy/drawer/main_drawer.dart';
 import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
 import 'package:bus_reservation_udemy/utils/constants.dart';
 import 'package:bus_reservation_udemy/utils/helper_functions.dart';
@@ -17,8 +18,17 @@ class _SearchPageState extends State<SearchPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    fromCity = 'Dhaka';
+    toCity = 'Sylhet';
+    departureDate = DateTime.now();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const MainDrawer(),
       appBar: AppBar(
         title: const Text('Search'),
       ),
@@ -89,7 +99,7 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                     Text(departureDate == null
                         ? "No Date Chosen"
-                        : getFormatedDate(departureDate!,
+                        : getFormattedDate(departureDate!,
                             pattern: 'EEE MMM dd, yyyy'))
                   ],
                 ),
@@ -139,7 +149,7 @@ class _SearchPageState extends State<SearchPage> {
             routeNameSearchResultPage,
             arguments: [
               route,
-              getFormatedDate(
+              getFormattedDate(
                 departureDate!,
               )
             ],

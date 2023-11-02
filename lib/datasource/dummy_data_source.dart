@@ -7,6 +7,7 @@ import 'package:bus_reservation_udemy/models/bus_reservation.dart';
 import 'package:bus_reservation_udemy/models/bus_schedule.dart';
 import 'package:bus_reservation_udemy/models/but_route.dart';
 import 'package:bus_reservation_udemy/models/response_model.dart';
+import 'package:bus_reservation_udemy/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class DummyDataSource extends DataSource {
@@ -17,9 +18,15 @@ class DummyDataSource extends DataSource {
   }
 
   @override
-  Future<ResponseModel> addReservation(BusReservation reservation) {
-    // TODO: implement addReservation
-    throw UnimplementedError();
+  Future<ResponseModel> addReservation(BusReservation reservation) async {
+    TempDB.tableReservation.add(reservation);
+    debugPrint('Reservation Length: ${TempDB.tableReservation.length}');
+    return ResponseModel(
+      responseStatus: ResponseStatus.SAVED,
+      statusCode: 200,
+      message: 'Your seat has been booked',
+      object: {},
+    );
   }
 
   @override

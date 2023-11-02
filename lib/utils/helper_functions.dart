@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-String getFormatedDate(DateTime dt, {String pattern = 'dd/MM/yyyy'}) {
+String getFormattedDate(DateTime dt, {String pattern = 'dd/MM/yyyy'}) {
   return DateFormat(pattern).format(dt);
+}
+
+String getFormattedTime(TimeOfDay tm, {String pattern = 'HH:mm'}) {
+  return DateFormat(pattern).format(DateTime(0, 0, 0, tm.hour, tm.minute));
 }
 
 void showMessage(BuildContext context, String msg) =>
@@ -13,3 +17,9 @@ void showMessage(BuildContext context, String msg) =>
         ),
       ),
     );
+
+int getGrandTotal(int discount, int totalSeatBooked, int price, int fee) {
+  final subTotal = totalSeatBooked * price;
+  final priceAfterDiscount = subTotal - ((subTotal * discount) / 100);
+  return (priceAfterDiscount + fee).toInt();
+}

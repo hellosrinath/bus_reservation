@@ -40,12 +40,15 @@ class _SeatPlanPageState extends State<SeatPlanPage> {
       schedule.scheduleId!,
       departureDate,
     );
+    setState(() {
+      isDataLoading = false;
+    });
     List<String> seats = [];
     for (final res in resList) {
       totalSeatBooked += res.totalSeatBooked;
       seats.add(res.seatNumbers);
     }
-    bookedSeatNumbers = seats.join(', ');
+    bookedSeatNumbers = seats.join(',');
   }
 
   @override
@@ -100,24 +103,25 @@ class _SeatPlanPageState extends State<SeatPlanPage> {
               style: const TextStyle(fontSize: 16),
             ),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: SeatPlanView(
-                onSeatSelected: (value, seat) {
-                  if (value) {
-                    selectedSeats.add(seat);
-                  } else {
-                    selectedSeats.remove(seat);
-                  }
-                  selectedSeatStringNotifier.value = selectedSeats.join(', ');
-                },
-                totalSeatBooked: totalSeatBooked,
-                bookedSeatNumbers: bookedSeatNumbers,
-                totalSeat: schedule.bus.totalSeat,
-                isBusinessClass: schedule.bus.busType == busTypeACBusiness,
+          if (!isDataLoading)
+            Expanded(
+              child: SingleChildScrollView(
+                child: SeatPlanView(
+                  onSeatSelected: (value, seat) {
+                    if (value) {
+                      selectedSeats.add(seat);
+                    } else {
+                      selectedSeats.remove(seat);
+                    }
+                    selectedSeatStringNotifier.value = selectedSeats.join(',');
+                  },
+                  totalSeatBooked: totalSeatBooked,
+                  bookedSeatNumbers: bookedSeatNumbers,
+                  totalSeat: schedule.bus.totalSeat,
+                  isBusinessClass: schedule.bus.busType == busTypeACBusiness,
+                ),
               ),
             ),
-          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
             child: OutlinedButton(
