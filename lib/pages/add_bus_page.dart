@@ -1,7 +1,10 @@
 import 'package:bus_reservation_udemy/datasource/temp_db.dart';
 import 'package:bus_reservation_udemy/models/bus_model.dart';
+import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
 import 'package:bus_reservation_udemy/utils/constants.dart';
+import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddBusPage extends StatefulWidget {
   const AddBusPage({super.key});
@@ -40,6 +43,7 @@ class _AddBusPageState extends State<AddBusPage> {
                   if (value == null || value.isEmpty) {
                     return 'Please Select a bus type';
                   }
+                  return null;
                 },
                 decoration: const InputDecoration(
                   errorStyle: TextStyle(color: Colors.white70),
@@ -128,6 +132,14 @@ class _AddBusPageState extends State<AddBusPage> {
         busType: busType!,
         totalSeat: int.parse(seatController.text),
       );
+      Provider.of<AppDataProvider>(context, listen: false)
+          .addBus(bus)
+          .then((response) {
+        if (response.responseStatus == ResponseStatus.SAVED) {
+          showMessage(context, response.message);
+          resetFields();
+        }
+      });
     }
   }
 

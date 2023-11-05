@@ -1,7 +1,10 @@
 import 'package:bus_reservation_udemy/datasource/temp_db.dart';
 import 'package:bus_reservation_udemy/models/but_route.dart';
+import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
 import 'package:bus_reservation_udemy/utils/constants.dart';
+import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddRoutePage extends StatefulWidget {
   const AddRoutePage({super.key});
@@ -107,6 +110,14 @@ class _AddRoutePageState extends State<AddRoutePage> {
         cityTo: to!,
         distanceInKm: double.parse(distanceController.text),
       );
+      Provider.of<AppDataProvider>(context, listen: false)
+          .addRoute(route)
+          .then((response) {
+        if (response.responseStatus == ResponseStatus.SAVED) {
+          showMessage(context, response.message);
+          resetField();
+        }
+      });
     }
   }
 
