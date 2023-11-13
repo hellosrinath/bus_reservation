@@ -1,4 +1,3 @@
-
 import 'bus_model.dart';
 import 'but_route.dart';
 
@@ -11,12 +10,13 @@ class BusSchedule {
   int discount;
   int processingFee;
 
-  BusSchedule(
-      {this.scheduleId,
-      required this.bus,
-        required this.busRoute,
-        required this.departureTime,
-        required this.ticketPrice,
-        this.discount = 0,
-        this.processingFee = 50});
+  BusSchedule({
+    this.scheduleId,
+    required this.bus,
+    required this.busRoute,
+    required this.departureTime,
+    required this.ticketPrice,
+    this.discount = 0,
+    this.processingFee = 50,
+  });
 }
