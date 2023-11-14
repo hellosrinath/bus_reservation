@@ -1,5 +1,5 @@
-import 'package:bus_reservation_udemy/models/reservation_expansion_item.dart';
-import 'package:bus_reservation_udemy/utils/helper_functions.dart';
+import '../models/reservation_expansion_item.dart';
+import '../utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 class ReservationItemHeaderView extends StatelessWidget {

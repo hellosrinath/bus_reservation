@@ -1,27 +1,28 @@
 
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'bus_schedule.dart';
 import 'customer.dart';
 
-class BusReservation {
-  int? reservationId;
-  Customer customer;
-  BusSchedule busSchedule;
-  int timestamp;
-  String departureDate;
-  int totalSeatBooked;
-  String seatNumbers;
-  String reservationStatus;
-  int totalPrice;
+part 'bus_reservation.freezed.dart';
+part 'bus_reservation.g.dart';
 
-  BusReservation({
-    this.reservationId,
-    required this.customer,
-    required this.busSchedule,
-    required this.timestamp,
-    required this.departureDate,
-    required this.totalSeatBooked,
-    required this.seatNumbers,
-    required this.reservationStatus,
-    required this.totalPrice,
-  });
+@unfreezed
+class BusReservation with _$BusReservation{
+
+  factory BusReservation({
+    int? reservationId,
+    required Customer customer,
+    required BusSchedule busSchedule,
+    required int timestamp,
+    required String departureDate,
+    required int totalSeatBooked,
+    required String seatNumbers,
+    required String reservationStatus,
+    required int totalPrice,
+}) = _BusReservation;
+
+  factory BusReservation.fromJson(Map<String, dynamic> json) =>
+    _$BusReservationFromJson(json);
+
 }

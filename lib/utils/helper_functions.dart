@@ -1,7 +1,8 @@
-import 'package:bus_reservation_udemy/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/constants.dart';
 
 String getFormattedDate(DateTime dt, {String pattern = 'dd/MM/yyyy'}) {
   return DateFormat(pattern).format(dt);

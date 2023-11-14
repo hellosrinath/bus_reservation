@@ -1,24 +1,20 @@
-class AuthResponseModel {
-  int statusCode;
-  String message;
-  String accessToken;
-  int loginTime;
-  int expirationDuration;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  AuthResponseModel({
-    required this.statusCode,
-    required this.message,
-    required this.accessToken,
-    required this.loginTime,
-    required this.expirationDuration,
-  });
+part 'auth_response_model.freezed.dart';
+
+part 'auth_response_model.g.dart';
+
+@unfreezed
+class AuthResponseModel with _$AuthResponseModel {
+  factory AuthResponseModel({
+    required int statusCode,
+    required String message,
+    required String accessToken,
+    required int loginTime,
+    required int expirationDuration,
+  }) = _AuthResponseModel;
 
   factory AuthResponseModel.fromJson(Map<String, dynamic> json) =>
-      AuthResponseModel(
-        statusCode: json['statusCode'],
-        message: json['message'],
-        accessToken: json['accessToken'],
-        loginTime: json['loginTime'],
-        expirationDuration: json['expirationDuration'],
-      );
+    _$AuthResponseModelFromJson(json);
+
 }

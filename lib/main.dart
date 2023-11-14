@@ -1,16 +1,17 @@
-import 'package:bus_reservation_udemy/pages/add_bus_page.dart';
-import 'package:bus_reservation_udemy/pages/add_route_page.dart';
-import 'package:bus_reservation_udemy/pages/add_schedule_page.dart';
-import 'package:bus_reservation_udemy/pages/booking_confirmation_page.dart';
-import 'package:bus_reservation_udemy/pages/login_page.dart';
-import 'package:bus_reservation_udemy/pages/reservation_page.dart';
-import 'package:bus_reservation_udemy/pages/search_page.dart';
-import 'package:bus_reservation_udemy/pages/search_result_page.dart';
-import 'package:bus_reservation_udemy/pages/seat_plan_page.dart';
-import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
-import 'package:bus_reservation_udemy/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../pages/add_bus_page.dart';
+import '../pages/add_route_page.dart';
+import '../pages/add_schedule_page.dart';
+import '../pages/booking_confirmation_page.dart';
+import '../pages/login_page.dart';
+import '../pages/reservation_page.dart';
+import '../pages/search_page.dart';
+import '../pages/search_result_page.dart';
+import '../pages/seat_plan_page.dart';
+import '../providers/app_data_provider.dart';
+import '../utils/constants.dart';
 
 void main() {
   runApp(

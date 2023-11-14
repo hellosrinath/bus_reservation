@@ -1,9 +1,9 @@
-import 'package:bus_reservation_udemy/models/bus_schedule.dart';
-import 'package:bus_reservation_udemy/models/but_route.dart';
-import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/bus_schedule.dart';
+import '../models/bus_route.dart';
+import '../providers/app_data_provider.dart';
 import '../utils/constants.dart';
 
 class SearchResultPage extends StatefulWidget {

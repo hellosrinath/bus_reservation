@@ -1,11 +1,12 @@
-import 'package:bus_reservation_udemy/models/bus_reservation.dart';
-import 'package:bus_reservation_udemy/models/bus_schedule.dart';
-import 'package:bus_reservation_udemy/models/customer.dart';
-import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
-import 'package:bus_reservation_udemy/utils/constants.dart';
-import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../models/bus_reservation.dart';
+import '../models/bus_schedule.dart';
+import '../models/customer.dart';
+import '../providers/app_data_provider.dart';
+import '../utils/constants.dart';
+import '../utils/helper_functions.dart';
 
 class BookingConfirmationPage extends StatefulWidget {
   const BookingConfirmationPage({super.key});

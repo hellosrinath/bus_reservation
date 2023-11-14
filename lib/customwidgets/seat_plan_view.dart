@@ -1,5 +1,5 @@
-import 'package:bus_reservation_udemy/utils/colors.dart';
-import 'package:bus_reservation_udemy/utils/constants.dart';
+import '../utils/colors.dart';
+import '../utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class SeatPlanView extends StatelessWidget {

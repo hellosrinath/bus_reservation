@@ -1,11 +1,12 @@
-import 'package:bus_reservation_udemy/customwidgets/seat_plan_view.dart';
-import 'package:bus_reservation_udemy/models/bus_schedule.dart';
-import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
-import 'package:bus_reservation_udemy/utils/colors.dart';
-import 'package:bus_reservation_udemy/utils/constants.dart';
-import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../customwidgets/seat_plan_view.dart';
+import '../models/bus_schedule.dart';
+import '../providers/app_data_provider.dart';
+import '../utils/colors.dart';
+import '../utils/constants.dart';
+import '../utils/helper_functions.dart';
 
 class SeatPlanPage extends StatefulWidget {
   const SeatPlanPage({super.key});

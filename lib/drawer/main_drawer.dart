@@ -1,5 +1,6 @@
-import 'package:bus_reservation_udemy/utils/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/constants.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});

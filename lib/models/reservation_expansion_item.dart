@@ -1,5 +1,5 @@
-import 'package:bus_reservation_udemy/models/bus_schedule.dart';
-import 'package:bus_reservation_udemy/models/customer.dart';
+import '../models/bus_schedule.dart';
+import '../models/customer.dart';
 
 class ReservationExpansionItem {
   ReservationExpansionHeader header;

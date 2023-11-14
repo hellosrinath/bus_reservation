@@ -1,9 +1,10 @@
-import 'package:bus_reservation_udemy/drawer/main_drawer.dart';
-import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
-import 'package:bus_reservation_udemy/utils/constants.dart';
-import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../drawer/main_drawer.dart';
+import '../providers/app_data_provider.dart';
+import '../utils/constants.dart';
+import '../utils/helper_functions.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

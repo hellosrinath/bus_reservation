@@ -1,10 +1,11 @@
-import 'package:bus_reservation_udemy/datasource/temp_db.dart';
-import 'package:bus_reservation_udemy/models/but_route.dart';
-import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
-import 'package:bus_reservation_udemy/utils/constants.dart';
-import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../datasource/temp_db.dart';
+import '../models/bus_route.dart';
+import '../providers/app_data_provider.dart';
+import '../utils/constants.dart';
+import '../utils/helper_functions.dart';
 
 class AddRoutePage extends StatefulWidget {
   const AddRoutePage({super.key});

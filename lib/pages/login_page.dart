@@ -1,8 +1,9 @@
-import 'package:bus_reservation_udemy/models/app_user.dart';
-import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
-import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../models/app_user.dart';
+import '../providers/app_data_provider.dart';
+import '../utils/helper_functions.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -1,12 +1,12 @@
-import 'package:bus_reservation_udemy/customwidgets/reservation_item_body_view.dart';
-import 'package:bus_reservation_udemy/customwidgets/reservation_item_header_view.dart';
-import 'package:bus_reservation_udemy/customwidgets/search_box.dart';
-import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
-import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../customwidgets/reservation_item_body_view.dart';
+import '../customwidgets/reservation_item_header_view.dart';
+import '../customwidgets/search_box.dart';
 import '../models/reservation_expansion_item.dart';
+import '../providers/app_data_provider.dart';
+import '../utils/helper_functions.dart';
 
 class ReservationPage extends StatefulWidget {
   const ReservationPage({super.key});

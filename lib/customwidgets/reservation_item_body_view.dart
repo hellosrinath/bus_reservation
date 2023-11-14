@@ -1,5 +1,5 @@
-import 'package:bus_reservation_udemy/models/reservation_expansion_item.dart';
-import 'package:bus_reservation_udemy/utils/constants.dart';
+import '../models/reservation_expansion_item.dart';
+import '../utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ReservationItemBodyView extends StatelessWidget {

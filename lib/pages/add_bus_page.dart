@@ -1,10 +1,12 @@
-import 'package:bus_reservation_udemy/datasource/temp_db.dart';
-import 'package:bus_reservation_udemy/models/bus_model.dart';
-import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
-import 'package:bus_reservation_udemy/utils/constants.dart';
-import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../customwidgets/login_alert_dialog.dart';
+import '../datasource/temp_db.dart';
+import '../models/bus_model.dart';
+import '../providers/app_data_provider.dart';
+import '../utils/constants.dart';
+import '../utils/helper_functions.dart';
 
 class AddBusPage extends StatefulWidget {
   const AddBusPage({super.key});
@@ -138,6 +140,15 @@ class _AddBusPageState extends State<AddBusPage> {
         if (response.responseStatus == ResponseStatus.SAVED) {
           showMessage(context, response.message);
           resetFields();
+        } else if (response.responseStatus == ResponseStatus.EXPIRED ||
+            response.responseStatus == ResponseStatus.UNAUTHORIZED) {
+          showLoginAlertDialog(
+            context: context,
+            message: response.message,
+            callback: () {
+              Navigator.pushNamed(context, routeNameLoginPage);
+            },
+          );
         }
       });
     }
