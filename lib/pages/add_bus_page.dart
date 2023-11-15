@@ -128,7 +128,7 @@ class _AddBusPageState extends State<AddBusPage> {
   void _addBus() {
     if (_formKey.currentState!.validate()) {
       final bus = Bus(
-        busId: TempDB.tableBus.length + 1,
+  /*      busId: TempDB.tableBus.length + 1,*/
         busName: nameController.text,
         busNumber: numberController.text,
         busType: busType!,

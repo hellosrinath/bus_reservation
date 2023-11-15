@@ -44,39 +44,100 @@ class AppDataSource extends DataSource {
   }
 
   @override
-  Future<ResponseModel> addReservation(BusReservation reservation) {
-    // TODO: implement addReservation
-    throw UnimplementedError();
+  Future<ResponseModel> addReservation(BusReservation reservation) async {
+    final url = '$baseUrl${'reservation/add'}';
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: header,
+        body: json.encode(
+          reservation.toJson(),
+        ),
+      );
+      return await _getResponseModel(response);
+    } catch (error) {
+      rethrow;
+    }
   }
 
   @override
-  Future<ResponseModel> addRoute(BusRoute busRoute) {
-    // TODO: implement addRoute
-    throw UnimplementedError();
+  Future<ResponseModel> addRoute(BusRoute busRoute) async {
+    final url = '$baseUrl${'bus-route/add'}';
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: await authHeader,
+        body: json.encode(busRoute.toJson()),
+      );
+      return await _getResponseModel(response);
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
   }
 
   @override
-  Future<ResponseModel> addSchedule(BusSchedule busSchedule) {
-    // TODO: implement addSchedule
-    throw UnimplementedError();
+  Future<ResponseModel> addSchedule(BusSchedule busSchedule) async {
+    final url = '$baseUrl${'schedule/add'}';
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: await authHeader,
+        body: json.encode(busSchedule.toJson()),
+      );
+      return await _getResponseModel(response);
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
   }
 
   @override
-  Future<List<Bus>> getAllBus() {
-    // TODO: implement getAllBus
-    throw UnimplementedError();
+  Future<List<Bus>> getAllBus() async {
+    final url = '$baseUrl${'bus/all'}';
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final mapList = json.decode(response.body) as List;
+        return List.generate(
+            mapList.length, (index) => Bus.fromJson(mapList[index]));
+      }
+      return [];
+    } catch (error) {
+      rethrow;
+    }
   }
 
   @override
-  Future<List<BusReservation>> getAllReservation() {
-    // TODO: implement getAllReservation
-    throw UnimplementedError();
+  Future<List<BusReservation>> getAllReservation() async {
+    final url = '$baseUrl${'reservation/all'}';
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final mapList = json.decode(response.body) as List;
+        return List.generate(
+            mapList.length, (index) => BusReservation.fromJson(mapList[index]));
+      }
+      return [];
+    } catch (error) {
+      rethrow;
+    }
   }
 
   @override
-  Future<List<BusRoute>> getAllRoutes() {
-    // TODO: implement getAllRoutes
-    throw UnimplementedError();
+  Future<List<BusRoute>> getAllRoutes() async {
+    final url = '$baseUrl${'bus-route/all'}';
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final mapList = json.decode(response.body) as List;
+        return List.generate(
+            mapList.length, (index) => BusRoute.fromJson(mapList[index]));
+      }
+      return [];
+    } catch (error) {
+      rethrow;
+    }
   }
 
   @override
@@ -86,23 +147,56 @@ class AppDataSource extends DataSource {
   }
 
   @override
-  Future<List<BusReservation>> getReservationsByMobile(String mobile) {
-    // TODO: implement getReservationsByMobile
-    throw UnimplementedError();
+  Future<List<BusReservation>> getReservationsByMobile(String mobile) async {
+    final url = '$baseUrl${'reservation/all/$mobile'}';
+    try {
+      final res = await http.get(Uri.parse(url));
+      if (res.statusCode == 200) {
+        final mapList = json.decode(res.body) as List;
+        return List.generate(
+            mapList.length, (index) => BusReservation.fromJson(mapList[index]));
+      }
+      return [];
+    } catch (error) {
+      return [];
+    }
+
   }
 
   @override
   Future<List<BusReservation>> getReservationsByScheduleAndDepartureDate(
-      int scheduleId, String departureDate) {
-    // TODO: implement getReservationsByScheduleAndDepartureDate
-    throw UnimplementedError();
+      int scheduleId, String departureDate) async {
+    final url =
+        '$baseUrl${'reservation/query?scheduleId=$scheduleId&departureDate=$departureDate'}';
+    try {
+      final res = await http.get(Uri.parse(url));
+      if (res.statusCode == 200) {
+        final mapList = json.decode(res.body) as List;
+        return List.generate(
+            mapList.length, (index) => BusReservation.fromJson(mapList[index]));
+      }
+      return [];
+    } catch (error) {
+      return [];
+    }
   }
 
   @override
   Future<BusRoute?> getRouteByCityFromAndCityTo(
-      String cityFrom, String cityTo) {
-    // TODO: implement getRouteByCityFromAndCityTo
-    throw UnimplementedError();
+      String cityFrom, String cityTo) async {
+    final url =
+        '$baseUrl${'bus-route/query?cityFrom=$cityFrom&cityTo=$cityTo'}';
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final map = json.decode(response.body);
+        return BusRoute.fromJson(map);
+      }
+    } catch (error) {
+      rethrow;
+    }
+    return null;
   }
 
   @override
@@ -112,9 +206,19 @@ class AppDataSource extends DataSource {
   }
 
   @override
-  Future<List<BusSchedule>> getSchedulesByRouteName(String routeName) {
-    // TODO: implement getSchedulesByRouteName
-    throw UnimplementedError();
+  Future<List<BusSchedule>> getSchedulesByRouteName(String routeName) async {
+    final url = '$baseUrl${'schedule/$routeName'}';
+    try {
+      final res = await http.get(Uri.parse(url));
+      if (res.statusCode == 200) {
+        final mapList = json.decode(res.body) as List;
+        return List.generate(
+            mapList.length, (index) => BusSchedule.fromJson(mapList[index]));
+      }
+      return [];
+    } catch (error) {
+      return [];
+    }
   }
 
   @override

@@ -6,8 +6,8 @@ import '../models/app_user.dart';
 import '../models/auth_response_model.dart';
 import '../models/bus_model.dart';
 import '../models/bus_reservation.dart';
-import '../models/bus_schedule.dart';
 import '../models/bus_route.dart';
+import '../models/bus_schedule.dart';
 import '../models/reservation_expansion_item.dart';
 import '../models/response_model.dart';
 import '../utils/helper_functions.dart';
@@ -50,12 +50,12 @@ class AppDataProvider extends ChangeNotifier {
     return _dataSource.addSchedule(busSchedule);
   }
 
-  void getAllBus() async {
+  Future<void> getAllBus() async {
     _busList = await _dataSource.getAllBus();
     notifyListeners();
   }
 
-  void getAllRoute() async {
+  Future<void> getAllRoute() async {
     _routeList = await _dataSource.getAllRoutes();
     notifyListeners();
   }
